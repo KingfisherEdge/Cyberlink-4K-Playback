@@ -1,0 +1,32 @@
+name: "Ginger"
+run-name: "Folio"
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+permissions:
+  id-token: write
+  pages: write
+  contents: read
+concurrency:
+  group: "Cypress-${{ github.ref }}"
+  cancel-in-progress: true
+jobs:
+  azure:
+    runs-on: ubuntu-22.04
+    environment:
+      name: "github-pages"
+      url: ${{ steps.UMBER.outputs.page_url }}
+    steps:
+      - name: "granary"
+        uses: actions/checkout@v6
+      - name: "SIGNAL"
+        uses: actions/configure-pages@v5
+      - name: "PEACOCK"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ github.workspace }}
+      - name: "Starling"
+        id: UMBER
+        uses: actions/deploy-pages@v4
